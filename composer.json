@@ -32,13 +32,13 @@
     },
     "autoload": {
         "classmap": ["casino/database/seeds", "casino/database/factories"],
-        "psr-4": {"VanguardLTE\\\\": "casino/app/"},
+        "psr-4": {"VanguardLTE\\": "casino/app/"},
         "files": ["casino/app/Support/helpers.php"]
     },
     "extra": {"laravel": {"dont-discover": []}},
     "scripts": {
         "post-autoload-dump": [
-            "Illuminate\\\\Foundation\\\\ComposerScripts::postAutoloadDump",
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php casino/artisan package:discover"
         ]
     },
