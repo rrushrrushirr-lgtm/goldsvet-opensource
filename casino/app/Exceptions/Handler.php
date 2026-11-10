@@ -35,6 +35,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $e)
     {
+        // Always expose the root exception in container logs for hosted deployments.
+        error_log('[Laravel] '.get_class($e).': '.$e->getMessage().' in '.$e->getFile().':'.$e->getLine());
         parent::report($e);
     }
 
