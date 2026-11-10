@@ -13,6 +13,12 @@ if (! function_exists('settings')) {
      */
     function settings($key = null, $default = null)
     {
+        // Composer runs package:discover before the database service is available
+        // in container builds. Avoid opening the settings table during that command.
+        if (PHP_SAPI === 'cli' && in_array('package:discover', $_SERVER['argv'] ?? [], true)) {
+            return $default;
+        }
+
         if (is_null($key)) {
             return app('anlutro\LaravelSettings\SettingStore');
         }
