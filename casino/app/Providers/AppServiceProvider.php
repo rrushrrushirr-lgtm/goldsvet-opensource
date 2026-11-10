@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
                 if (!empty($appName)) {
                     config(['app.name' => $appName]);
                 }
-            } catch (\\Throwable $e) {
+            } catch (\Throwable $e) {
                 // Do not let an unavailable settings database prevent the app from booting.
             }
         }
