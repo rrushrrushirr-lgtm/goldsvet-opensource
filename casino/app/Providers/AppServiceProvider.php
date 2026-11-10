@@ -32,10 +32,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Carbon::setLocale(config('app.locale'));
-        // Database-backed settings are unavailable during Composer's build-time package discovery.
-        // Load the configured application name only for web requests, when the database is available.
+        // The settings table may not exist or the database may be unavailable during image builds.
+        // Keep the configured default name in that case; load the database value only when safe.
         if (!$this->app->runningInConsole()) {
-            config(['app.name' => settings('app_name')]);
+            try {
+                $appName = settings('app_name');
+                if (!empty($appName)) {
+                    config(['app.name' => $appName]);
+                }
+            } catch (\\Throwable $e) {
+                // Do not let an unavailable settings database prevent the app from booting.
+            }
         }
         \Illuminate\Database\Schema\Builder::defaultStringLength(191);
 
