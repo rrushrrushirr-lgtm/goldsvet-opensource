@@ -49,9 +49,9 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "Illuminate\\\\Foundation\\\\ComposerScripts::postAutoloadDump",
             "@php casino/artisan package:discover",
-            "@php -r \"foreach (['casino/storage','casino/storage/framework','casino/storage/framework/views','casino/storage/framework/cache','casino/storage/framework/sessions','casino/storage/logs','casino/bootstrap/cache'] as $d) { if (is_dir($d)) { chmod($d, 0777); } }\""
+            "@php -r 'foreach ([\"casino/storage\", \"casino/storage/framework\", \"casino/storage/framework/views\", \"casino/storage/framework/cache\", \"casino/storage/framework/sessions\", \"casino/storage/logs\", \"casino/bootstrap/cache\"] as $d) { if (is_dir($d)) { chmod($d, 0777); } }'"
         ]
     },
     "config": {
